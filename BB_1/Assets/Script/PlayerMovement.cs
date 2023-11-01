@@ -39,33 +39,23 @@ public class PlayerMovement : MonoBehaviour
     // 이동 관련 함수는 Update보다 FixedUpdate가 더 효율이 좋다고 함.
     void FixedUpdate()
     {
+        tryrun();
         Move();
         Jump();
-        tryrun();
     }
 
-    void Move()
-    {
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
 
-        Vector3 dir = new Vector3(h, 0, v);
-
-        if (!(h == 0 && v == 0))
-        {
-            transform.position += dir * walkSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotateSpeed);
-        }
-    }
     void tryrun()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Running();
+            Debug.Log("Run");
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             RunningCancel();
+            Debug.Log("Run Over");
         }
     }
 
@@ -78,6 +68,21 @@ public class PlayerMovement : MonoBehaviour
     {
         isRun = false;
         applySpeed = walkSpeed;
+    }
+
+   
+    void Move()
+    {
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+
+        Vector3 dir = new Vector3(h, 0, v).normalized;
+
+        if (!(h == 0 && v == 0))
+        {
+            transform.position += dir * applySpeed * Time.deltaTime;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotateSpeed);
+        }
     }
 
     void Jump()
@@ -106,3 +111,4 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
+

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    private Rigidbody rigidbody;
+    private Rigidbody rigid;
     public float speed = 10f;
     public float jumpHeight = 3f;
     public float dash = 5f;
@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = this.GetComponent<Rigidbody>();
+        rigid = this.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -35,13 +35,13 @@ public class PlayerMove : MonoBehaviour
             // AddForce(방향, 힘을 어떻게 사용하는지)
             // ForceMode.Impulse 순간적인 힘으로 무게를 적용할 때 사용
             Vector3 jumpForce = Vector3.up * jumpHeight;
-            rigidbody.AddForce(jumpForce, ForceMode.Impulse);
+            rigid.AddForce(jumpForce, ForceMode.Impulse);
         }
 
         if (Input.GetButtonDown("Dash"))
         {
-            Vector3 dashPower = transform.forward * -Mathf.Log(1 / rigidbody.drag) * dash;
-            rigidbody.AddForce(dashPower, ForceMode.VelocityChange);
+            Vector3 dashPower = transform.forward * -Mathf.Log(1 / rigid.drag) * dash;
+            rigid.AddForce(dashPower, ForceMode.VelocityChange);
         }
     }
 
@@ -60,7 +60,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         // 캐릭터 이동(이대로 사용하면 대각선으로 움직이는 속도가 일반적인 이동보다 빠르다.)
-        rigidbody.MovePosition(this.gameObject.transform.position + dir * speed * Time.deltaTime);
+        rigid.MovePosition(this.gameObject.transform.position + dir * speed * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)
