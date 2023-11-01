@@ -33,16 +33,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    // 이동 관련 함수는 Update보다 FixedUpdate가 더 효율이 좋다고 함.
-    void FixedUpdate()
-    {
         tryrun();
         Move();
         Jump();
     }
+
+    // 이동 관련 함수는 Update보다 FixedUpdate가 더 효율이 좋다고 함.
 
 
     void tryrun()

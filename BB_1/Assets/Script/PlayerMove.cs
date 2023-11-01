@@ -43,10 +43,7 @@ public class PlayerMove : MonoBehaviour
             Vector3 dashPower = transform.forward * -Mathf.Log(1 / rigid.drag) * dash;
             rigid.AddForce(dashPower, ForceMode.VelocityChange);
         }
-    }
 
-    private void FixedUpdate()
-    {
         if (dir != Vector3.zero)
         {
             // 지금 바라보는 방향의 부호 != 나아갈 방향 부호
@@ -62,6 +59,24 @@ public class PlayerMove : MonoBehaviour
         // 캐릭터 이동(이대로 사용하면 대각선으로 움직이는 속도가 일반적인 이동보다 빠르다.)
         rigid.MovePosition(this.gameObject.transform.position + dir * speed * Time.deltaTime);
     }
+
+    //private void FixedUpdate()
+    //{
+    //    if (dir != Vector3.zero)
+    //    {
+    //        // 지금 바라보는 방향의 부호 != 나아갈 방향 부호
+    //        // Mathf.sign은 ()안에 들어간 값이 음수, 0 양수인지 구분
+    //        if (Mathf.Sign(dir.x) != Mathf.Sign(transform.position.x) || Mathf.Sign(dir.z) != Mathf.Sign(transform.position.z))
+    //        {
+    //            transform.Rotate(0, 1, 0);
+    //        }
+    //        // 캐릭터 회전
+    //        transform.forward = Vector3.Lerp(transform.forward, dir, Time.deltaTime * rotSpeed);
+    //    }
+
+    //    // 캐릭터 이동(이대로 사용하면 대각선으로 움직이는 속도가 일반적인 이동보다 빠르다.)
+    //    rigid.MovePosition(this.gameObject.transform.position + dir * speed * Time.deltaTime);
+    //}
 
     private void OnCollisionEnter(Collision collision)
     {
