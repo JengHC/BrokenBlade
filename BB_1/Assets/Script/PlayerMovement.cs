@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isRun = false;
 
+
     Rigidbody rb;                           // 리지드 바디 변수
 
     float h, v;
@@ -34,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         tryrun();
-        Move();
         Jump();
+        Move();
     }
 
     // 이동 관련 함수는 Update보다 FixedUpdate가 더 효율이 좋다고 함.
