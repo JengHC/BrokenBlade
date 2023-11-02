@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    Animator anim;
+
     public float walkSpeed = 10.0f;
 
     [SerializeField]
@@ -29,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();   // Component를 활용해 Rigidbody사용
         applySpeed = walkSpeed;
+        anim = GetComponent<Animator>();
+
+
     }
 
     // Update is called once per frame
@@ -37,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         tryrun();
         Jump();
         Move();
+        //CharacterAnim();
     }
 
     // 이동 관련 함수는 Update보다 FixedUpdate가 더 효율이 좋다고 함.
@@ -47,12 +53,14 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Running();
+            anim.SetBool("isRun", true);
             Debug.Log("Run");
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             RunningCancel();
             Debug.Log("Run Over");
+            anim.SetBool("isRun", false);
         }
     }
 
@@ -79,6 +87,11 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position += dir * applySpeed * Time.deltaTime;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotateSpeed);
+            anim.SetBool("isWalk", true);
+        }
+        else
+        {
+            anim.SetBool("isWalk", false);
         }
     }
 
@@ -94,8 +107,20 @@ public class PlayerMovement : MonoBehaviour
 
             // 땅과 충돌없으면 isGround를 false로 바꿈
             isGround = false;
+            
         }
     }
+
+    //void CharacterAnim()
+    //{
+    //    h = Input.GetAxis("Horizontal");
+    //    v = Input.GetAxis("Vertical");
+    //    if (v>=0.1f)
+    //    {
+    //        anim.SetBool("isWalk", true);
+    //    }
+    //    if()
+    //}
 
     // 충돌 함수
     void OnCollisionEnter(Collision collision)
