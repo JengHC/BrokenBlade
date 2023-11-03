@@ -42,7 +42,9 @@ public class PlayerMovement : MonoBehaviour
         tryrun();
         Jump();
         Move();
-        //CharacterAnim();
+        
+        //AnimationUpdate();
+        //AnimationUpdate2();
     }
 
     // 이동 관련 함수는 Update보다 FixedUpdate가 더 효율이 좋다고 함.
@@ -111,15 +113,27 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //void CharacterAnim()
+    //void AnimationUpdate()
     //{
-    //    h = Input.GetAxis("Horizontal");
-    //    v = Input.GetAxis("Vertical");
-    //    if (v>=0.1f)
+    //    if(h==0 && v ==0)
     //    {
     //        anim.SetBool("isWalk", true);
     //    }
-    //    if()
+    //    else
+    //    {
+    //        anim.SetBool("isWalk", false);
+    //    }
+    //}
+    //void AnimationUpdate2()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.LeftShift))
+    //    {
+    //        anim.SetBool("isRun", true);
+    //    }
+    //    else if (Input.GetKeyUp(KeyCode.LeftShift))
+    //    {
+    //        anim.SetBool("isRun", false);
+    //    }
     //}
 
     // 충돌 함수
