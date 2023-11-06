@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
     void tryrun()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGround)
         {
             Running();
             anim.SetBool("isRun", true);
@@ -107,10 +107,18 @@ public class PlayerMovement : MonoBehaviour
             // ForceMode.Impulse 순간적인 힘으로 무게를 적용할 때 사용
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
+            anim.SetBool("isJump", true);
+
             // 땅과 충돌없으면 isGround를 false로 바꿈
             isGround = false;
             
         }
+        else
+        {
+            anim.SetBool("isJump", false);
+        }
+
+
     }
 
     //void AnimationUpdate()
