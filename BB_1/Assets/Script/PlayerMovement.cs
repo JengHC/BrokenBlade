@@ -33,8 +33,19 @@ public class PlayerMovement : MonoBehaviour
         applySpeed = walkSpeed;
         anim = GetComponent<Animator>();
 
-
     }
+    //void OnJumpReady()
+    //{
+    //    anim.SetFloat("JumpSpeed", 0.1f);
+    //}
+    //void OnJumpHigh()
+    //{
+    //    anim.SetFloat("JumpSpeed", 0.1f);
+    //}
+    //void OnJump()
+    //{
+    //    anim.SetFloat("JumpSpeed", 0.1f);
+    //}
 
     // Update is called once per frame
     void Update()
@@ -117,8 +128,6 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("isJump", false);
         }
-
-
     }
 
     //void AnimationUpdate()
