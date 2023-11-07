@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1a6eac67139a7f7418ad6763375c1925, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.18
+      value: 1.67
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1a6eac67139a7f7418ad6763375c1925, type: 3}
       propertyPath: m_LocalPosition.z
@@ -695,7 +695,7 @@ Transform:
   m_GameObject: {fileID: 838659198}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.4166884, y: 0.23072577, z: 7.4166884}
+  m_LocalScale: {x: 7.4166884, y: 0.01, z: 7.4166884}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -840,7 +840,7 @@ MonoBehaviour:
   walkSpeed: 7
   runSpeed: 15
   rotateSpeed: 10
-  jumpForce: 7
+  jumpForce: 4
 --- !u!1001 &1500451181
 PrefabInstance:
   m_ObjectHideFlags: 0
