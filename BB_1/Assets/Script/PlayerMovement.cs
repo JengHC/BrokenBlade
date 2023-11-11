@@ -24,13 +24,14 @@ public class PlayerMovement : MonoBehaviour
     private bool isFireReady = true;
 
     //public GameObject[] weapons;
-    //Weapon equipWeapon;
+
+    Weapon weapon;
 
     Rigidbody rb;                           // 리지드 바디 변수
 
     float h, v;
 
-    //float fireDelay;
+    float fireDelay;
 
     // 유니티 실행과 동시에 한번 실행되는 함수
     void Start()
@@ -137,27 +138,27 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("isJump", false);
         }
     }
-    //void wea()
-    //{
-    //    equipWeapon.gameObject.SetActive(false);
-    //    equipWeapon = GetComponent<Weapon>();
-    //    equipWeapon.gameObject.SetActive(true);
-    //}
+    void wea()
+    {
+        weapon.gameObject.SetActive(false);
+        weapon = GetComponent<Weapon>();
+        weapon.gameObject.SetActive(true);
+    }
     void Attack()
     {
 
-        //if (equipWeapon == null)
-        //{
-        //    return;
-        //}
-        //fireDelay += Time.deltaTime;
-        //isFireReady = equipWeapon.rate < fireDelay;
-
-        if (Input.GetMouseButtonDown(0) /*&& isFireReady*/)
+        if (weapon == null)
         {
-            //equipWeapon.Use();
+            return;
+        }
+        fireDelay += Time.deltaTime;
+        isFireReady = weapon.rate < fireDelay;
+
+        if (Input.GetMouseButtonDown(0) && isFireReady)
+        {
+            weapon.Use();
             anim.SetTrigger("isAttack");
-            //fireDelay = 0;
+            fireDelay = 0;
         }
 
     }
