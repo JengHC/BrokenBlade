@@ -39,34 +39,19 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();   // Component를 활용해 Rigidbody사용
         applySpeed = walkSpeed;
         anim = GetComponent<Animator>();
+        weapon = GetComponent<Weapon>();
 
     }
-    //void OnJumpReady()
-    //{
-    //    anim.SetFloat("JumpSpeed", 0.1f);
-    //}
-    //void OnJumpHigh()
-    //{
-    //    anim.SetFloat("JumpSpeed", 0.1f);
-    //}
-    //void OnJump()
-    //{
-    //    anim.SetFloat("JumpSpeed", 0.1f);
-    //}
 
-    // Update is called once per frame
     void Update()
     {
         tryrun();
         Jump();
+        wea();
         Attack();
-        //wea();
         Move();
         
-        //AnimationUpdate();
-        //AnimationUpdate2();
     }
-
     // 이동 관련 함수는 Update보다 FixedUpdate가 더 효율이 좋다고 함.
 
 
@@ -138,12 +123,16 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("isJump", false);
         }
     }
+
     void wea()
     {
-        weapon.gameObject.SetActive(false);
-        weapon = GetComponent<Weapon>();
-        weapon.gameObject.SetActive(true);
+        if(weapon != null)
+        {
+            weapon.gameObject.SetActive(!weapon.gameObject.activeSelf);
+        }
+
     }
+
     void Attack()
     {
 
@@ -159,32 +148,10 @@ public class PlayerMovement : MonoBehaviour
             weapon.Use();
             anim.SetTrigger("isAttack");
             fireDelay = 0;
+            Debug.Log("Click");
         }
 
     }
-
-    //void AnimationUpdate()
-    //{
-    //    if(h==0 && v ==0)
-    //    {
-    //        anim.SetBool("isWalk", true);
-    //    }
-    //    else
-    //    {
-    //        anim.SetBool("isWalk", false);
-    //    }
-    //}
-    //void AnimationUpdate2()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.LeftShift))
-    //    {
-    //        anim.SetBool("isRun", true);
-    //    }
-    //    else if (Input.GetKeyUp(KeyCode.LeftShift))
-    //    {
-    //        anim.SetBool("isRun", false);
-    //    }
-    //}
 
     // 충돌 함수
     void OnCollisionEnter(Collision collision)
@@ -197,4 +164,3 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
-
