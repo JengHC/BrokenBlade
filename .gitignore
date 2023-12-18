@@ -75,3 +75,10 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 BB_1/.vs/BB_1/v16/.suo
 *.dwlt
+*.dwlt
+*.txt
+*.json
+*.config
+*.json
+*.json
+*.csproj
